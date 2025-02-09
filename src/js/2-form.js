@@ -30,18 +30,21 @@ function loadFromLS(key) {
 
 refs.form.addEventListener("submit", onFormSubmit);
 
+
 function onFormSubmit(event) {
     event.preventDefault();
     const data = loadFromLS("feedback-form-state");
-    if (!refs.formData.email || !refs.formData.message) {
+    if (!refs.email.value || !refs.message.value) {
         alert("Fill please all fields");
     }
     else {
         console.log(data);
         refs.form.reset();
+        localStorage.removeItem("feedback-form-state");
     };
-    localStorage.removeItem("feedback-form-state");
 }
+
+
 function initPage() {
     const formData = loadFromLS("feedback-form-state");
     refs.email.value = formData?.email || "";
